@@ -1,0 +1,24 @@
+from pynput import keyboard
+
+COMBINATIONS = [
+    {keyboard.Key.shift, keyboard.KeyCode(char = 'A')} # Mess around with key combos here
+    ]
+
+current = set()
+
+def execute():
+    f = open("filename", "r") # Change the filename to a text file you'd like to open, make sure the text file is in the same folder as this
+    print(f.read())
+
+def on_press(key):
+    if any ([key in COMBO for COMBO in COMBINATIONS]):
+        current.add(key)
+        if any(all(k in current for k in COMBO) for COMBO in COMBINATIONS):
+            execute()
+
+def on_release(key):
+    if any([key in COMBO for COMBO in COMBINATIONS]):
+        current.remove(key)
+
+with keyboard.Listener(on_press = on_press, on_release = on_release) as listener:
+    listener.join()
