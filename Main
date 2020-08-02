@@ -7,7 +7,7 @@ COMBINATIONS = [
 current = set()
 
 def execute():
-    f = open("filename", "r") # Change the filename to a text file you'd like to open, make sure the text file is in the same folder as this
+    f = open("filename", "r") # Change the filename to a text file you'd like to open
     print(f.read())
 
 def on_press(key):
